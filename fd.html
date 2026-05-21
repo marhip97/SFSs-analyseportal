@@ -6,19 +6,20 @@
   <title>FD - SFS analyseplattform</title>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script src="auth.js"></script>
 </head>
 <body>
 
   <div class="topbar">
     <div class="topbar-inner">
-      <div class="topbar-brand"><a href="index.html">Finansdepartementet - Statsforvaltningsseksjonen</a></div>
-      <div class="topbar-meta">Analyseplattform</div>
+      <div class="topbar-brand"><a href="portal.html">Finansdepartementet - Statsforvaltningsseksjonen</a></div>
+      <div class="topbar-meta">Analyseplattform <a href="#" onclick="sfsLogout();return false;" class="topbar-logout">Logg ut</a></div>
     </div>
   </div>
 
   <nav class="breadcrumb">
     <div class="breadcrumb-inner">
-      <a href="index.html">Hjem</a>
+      <a href="portal.html">Hjem</a>
       <span class="separator">/</span>
       <a href="forstekontor.html">Forstekontor</a>
       <span class="separator">/</span>
