@@ -3,83 +3,126 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SFS analyseplattform</title>
+  <title>Logg inn - SFS analyseplattform</title>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="login-page">
 
   <div class="topbar">
     <div class="topbar-inner">
-      <div class="topbar-brand"><a href="index.html">Finansdepartementet - Statsforvaltningsseksjonen</a></div>
+      <div class="topbar-brand">Finansdepartementet - Statsforvaltningsseksjonen</div>
       <div class="topbar-meta">Analyseplattform</div>
     </div>
   </div>
 
-  <section class="hero">
-    <div class="hero-inner">
+  <div class="login-shell">
+
+    <div class="login-intro">
+      <span class="login-eyebrow">Internt analyseverktoy</span>
       <h1>SFS analyseplattform</h1>
       <p class="lead">
-        Samlet inngang til analyseverktoy for Statsforvaltningsseksjonen. Velg seksjonsovergripende
-        analyser eller naviger inn pa kontor og departement.
+        Samlet inngang til Statsforvaltningsseksjonens analyser. Plattformen gir
+        seksjonens medarbeidere en felles arbeidsflate for tverrgaende og
+        departementsspesifikke analyser knyttet til budsjett, styring og
+        oppfolging av forvaltningen.
       </p>
-      <div class="hero-meta">
-        <span><strong>Sist oppdatert:</strong> mai 2026</span>
-        <span><strong>Tilgang:</strong> SFS og samarbeidende seksjoner</span>
+      <ul class="login-features">
+        <li>Seksjonsovergripende analyser pa tvers av alle fem departementer</li>
+        <li>Egne arbeidsflater for forste- og andrekontor</li>
+        <li>Tilgang krever gyldig FIN-bruker og er forbeholdt SFS og samarbeidende seksjoner</li>
+      </ul>
+    </div>
+
+    <form class="login-card" id="loginForm" autocomplete="off" novalidate>
+      <h2>Logg inn</h2>
+      <p class="login-sub">Bruk din FIN-konto for a fortsette.</p>
+
+      <div class="login-error" id="loginError" hidden>
+        Feil brukernavn eller passord. Forsok pa nytt.
       </div>
-    </div>
-  </section>
 
-  <main>
-    <div class="toplevel-grid">
+      <div class="login-form">
+        <label for="email">E-postadresse</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="navn@fin.dep.no"
+          autocomplete="username"
+          required
+        >
 
-      <a class="toplevel-card variant-overall" href="seksjonsovergripende.html">
-        <div class="card-tag">Hele SFS</div>
-        <h2>Seksjonsovergripende</h2>
-        <p>
-          Analyser som dekker hele Statsforvaltningsseksjonens portefolje pa tvers
-          av departementene.
-        </p>
-        <div class="card-departments">
-          Innhold for alle <strong>fem departementer</strong>
-        </div>
-        <div class="card-cta">Se verktoy -&gt;</div>
-      </a>
+        <label for="password">Passord</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Passord"
+          autocomplete="current-password"
+          required
+        >
 
-      <a class="toplevel-card variant-forste" href="forstekontor.html">
-        <div class="card-tag">Kontor 1</div>
-        <h2>Forstekontor</h2>
-        <p>
-          Analyser knyttet til Forsvarsdepartementet og Justis- og beredskapsdepartementet.
-        </p>
-        <div class="card-departments">
-          Omfatter <strong>FD</strong> og <strong>JD</strong>
-        </div>
-        <div class="card-cta">Velg departement -&gt;</div>
-      </a>
+        <button type="submit">Logg inn</button>
+      </div>
 
-      <a class="toplevel-card variant-andre" href="andrekontor.html">
-        <div class="card-tag">Kontor 2</div>
-        <h2>Andrekontor</h2>
-        <p>
-          Analyser knyttet til Samferdselsdepartementet, Utenriksdepartementet og
-          Digitaliserings- og forvaltningsdepartementet.
-        </p>
-        <div class="card-departments">
-          Omfatter <strong>SD</strong>, <strong>UD</strong> og <strong>DFD</strong>
-        </div>
-        <div class="card-cta">Velg departement -&gt;</div>
-      </a>
+      <div class="login-meta">
+        Ved palogging samtykker du til retningslinjer for bruk av interne
+        analyseverktoy i Finansdepartementet. Mistanke om uautorisert tilgang
+        meldes til seksjonsledelsen.
+      </div>
+    </form>
 
-    </div>
-  </main>
+  </div>
 
-  <footer>
-    <div class="footer-inner">
-      <p>Finansdepartementet - Statsforvaltningsseksjonen</p>
-      <p class="footer-meta">Internt analyseverktoy. For tilbakemeldinger: kontakt seksjonsledelsen.</p>
-    </div>
-  </footer>
+  <div class="login-footer">
+    Finansdepartementet - Statsforvaltningsseksjonen - Analyseplattform
+  </div>
+
+  <script>
+    (function () {
+      var VALID_USER = 'test@fin.dep.no';
+      var VALID_PASS = 'test123';
+
+      var form = document.getElementById('loginForm');
+      var errorBox = document.getElementById('loginError');
+      var emailInput = document.getElementById('email');
+      var passwordInput = document.getElementById('password');
+
+      function getNextTarget() {
+        try {
+          var params = new URLSearchParams(location.search);
+          var next = params.get('next');
+          if (next && /^[a-z0-9_\-]+\.html$/i.test(next) && next.toLowerCase() !== 'index.html') {
+            return next;
+          }
+        } catch (e) {}
+        return 'portal.html';
+      }
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        var email = (emailInput.value || '').trim().toLowerCase();
+        var password = passwordInput.value || '';
+
+        if (email === VALID_USER && password === VALID_PASS) {
+          try { sessionStorage.setItem('sfs-auth', '1'); } catch (e) {}
+          errorBox.hidden = true;
+          location.replace(getNextTarget());
+        } else {
+          errorBox.hidden = false;
+          passwordInput.value = '';
+          passwordInput.focus();
+        }
+      });
+
+      try {
+        if (sessionStorage.getItem('sfs-auth') === '1') {
+          location.replace(getNextTarget());
+        }
+      } catch (e) {}
+    })();
+  </script>
 
 </body>
 </html>
