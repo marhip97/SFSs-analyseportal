@@ -116,10 +116,7 @@ a:hover {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background:
-    radial-gradient(ellipse at top left, rgba(91, 145, 204, 0.18), transparent 55%),
-    radial-gradient(ellipse at bottom right, rgba(65, 86, 166, 0.22), transparent 60%),
-    linear-gradient(135deg, #0f1347 0%, #181c62 45%, #2a3490 100%);
+  background: var(--fin-darkblue);
   color: var(--fin-white);
 }
 
@@ -162,33 +159,6 @@ a:hover {
   color: #e3e8ff;
   margin-bottom: 26px;
   max-width: 520px;
-}
-
-.login-features {
-  list-style: none;
-  display: grid;
-  gap: 12px;
-  max-width: 520px;
-}
-
-.login-features li {
-  font-size: 14px;
-  color: #e8ecff;
-  padding-left: 26px;
-  position: relative;
-  line-height: 1.5;
-}
-
-.login-features li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 7px;
-  width: 14px;
-  height: 8px;
-  border-left: 2px solid var(--fin-teal);
-  border-bottom: 2px solid var(--fin-teal);
-  transform: rotate(-45deg);
 }
 
 .login-card {
